@@ -299,6 +299,7 @@
 				INFOPLIST_FILE = ContactsHQ/Application/Main/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Contacts HQ";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_NSContactsUsageDescription = "Grant access to contacts in order to import";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -341,6 +342,7 @@
 				INFOPLIST_FILE = ContactsHQ/Application/Main/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Contacts HQ";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_NSContactsUsageDescription = "Grant access to contacts in order to import";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
