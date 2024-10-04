@@ -3,6 +3,7 @@
 //  ContactsHQ
 //
 //  Created by Mikael Weiss on 10/3/24.
+//  Copyright © 2024 Mikael Weiss. All rights reserved.
 //
 
 import SwiftUI
@@ -10,20 +11,20 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
 
     var body: some View {
         NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
+            Text("Sup")
+//            List {
+//                ForEach(items) { item in
+//                    NavigationLink {
+//                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
+//                    } label: {
+//                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+//                    }
+//                }
+//                .onDelete(perform: deleteItems)
+//            }
 #if os(macOS)
             .navigationSplitViewColumnWidth(min: 180, ideal: 200)
 #endif
@@ -46,21 +47,21 @@ struct ContentView: View {
 
     private func addItem() {
         withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
+//            let newItem = Item(timestamp: Date())
+//            modelContext.insert(newItem)
         }
     }
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
+//            for index in offsets {
+//                modelContext.delete(items[index])
+//            }
         }
     }
 }
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+        .modelContainer(for: Person.self, inMemory: true)
 }

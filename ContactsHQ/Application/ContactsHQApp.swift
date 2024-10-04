@@ -3,6 +3,7 @@
 //  ContactsHQ
 //
 //  Created by Mikael Weiss on 10/3/24.
+//  Copyright © 2024 Mikael Weiss. All rights reserved.
 //
 
 import SwiftUI
@@ -12,7 +13,7 @@ import SwiftData
 struct ContactsHQApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            Person.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
