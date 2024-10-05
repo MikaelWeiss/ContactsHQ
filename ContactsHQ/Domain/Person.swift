@@ -89,4 +89,34 @@ final class Person {
             self.value = value
         }
     }
+    
+    #if DEBUG
+    static var examplePerson: Person {
+        Person(id: UUID(),
+               givenName: "John",
+               familyName: "Doe",
+               company: "John's Company",
+               phoneNumbers: [
+                LabeledContactValue(label: "Work", value: "1234567890")
+               ],
+               emailAddresses: [
+                LabeledContactValue(label: "Work", value: "john@doe.com")
+               ],
+               socialProfiles: [
+                LabeledContactValue(label: "Facebook", value: "https://facebook.com/john.doe")
+               ],
+               postalAddresses: [
+                LabeledContactValue(label: "Home Address", value: "1234 Main Street, Anytown, USA")
+               ],
+               urlAddresses: [],
+               contactRelations: [],
+               note: "Met John playing golf a few weeks ago. Fun guy! He's always up for a good time.",
+               imageData: nil,
+               type: .acquaintance,
+               preferredLanguage: .english,
+               availability: [.morning, .evening],
+               birthday: nil,
+               groups: [])
+    }
+    #endif
 }

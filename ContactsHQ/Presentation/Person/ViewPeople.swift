@@ -41,7 +41,7 @@ struct ViewPeople: View {
             } else {
                 List(people) { person in
                     NavigationLink {
-                        ViewPersonTimeline(person: person)
+                        ViewPerson(person: person)
                     } label: {
                         HStack(spacing: 16) {
                             if let data = person.imageData, let image = UIImage(data: data) {
