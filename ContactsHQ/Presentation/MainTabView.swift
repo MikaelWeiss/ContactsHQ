@@ -32,7 +32,7 @@ struct MainTabView: View {
                 }
                 .tag(0)
             }
-            Text("Maps View")
+            MapView(markers: .constant([]))
                 .tabItem {
                     Image(systemName: "map.circle.fill")
                     Text("Map")

@@ -43,26 +43,49 @@ struct ViewPeople: View {
                     NavigationLink {
                         ViewPersonTimeline(person: person)
                     } label: {
-                        Text(person.givenName)
+                        HStack(spacing: 16) {
+                            if let data = person.imageData, let image = UIImage(data: data) {
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 56, height: 56)
+                                    .clipShape(Circle())
+                            } else {
+                                Image(systemName: "person.circle.fill")
+                                    .resizable()
+                                    .opacity(0.5)
+                                    .frame(width: 56, height: 56)
+                            }
+                            VStack(alignment: .leading) {
+                                Text(person.givenName + " " + (person.familyName ?? ""))
+                                    .font(.system(.title3, design: .rounded, weight: .semibold))
+                                Text("Contacted xxx months ago")
+                                    .fontDesign(.serif)
+                            }
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .contentShape(Rectangle())
-                            .swipeActions(allowsFullSwipe: true) {
-                                Button(action: {
-                                    showConfirmDeletePerson = true
-                                    personToDelete = person
-                                }, label: {
-                                    Label("Delete", systemImage: "trash.fill")
-                                })
-                                .tint(Color.red)
+                        }
+                        .listRowSeparator(.hidden)
+                        .listRowBackground(Color.clear)
+                        .frame(maxWidth: .infinity)
+                        .contentShape(Rectangle())
+                        .fontDesign(.rounded)
+                        .swipeActions(allowsFullSwipe: true) {
+                            Button(action: {
+                                showConfirmDeletePerson = true
+                                personToDelete = person
+                            }, label: {
+                                Label("Delete", systemImage: "trash.fill")
+                            })
+                            .tint(Color.red)
+                        }
+                        .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                            Button(action: {
+                                personToEdit = person
+                            }) {
+                                Label("Edit", systemImage: "pencil")
                             }
-                            .swipeActions(edge: .leading, allowsFullSwipe: true) {
-                                Button(action: {
-                                    personToEdit = person
-                                }) {
-                                    Label("Edit", systemImage: "pencil")
-                                }
-                                .tint(.orange)
-                            }
+                            .tint(.orange)
+                        }
                     }
                 }
                 .navigationTitle("People")

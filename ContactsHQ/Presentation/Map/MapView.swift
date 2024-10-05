@@ -10,12 +10,16 @@ import SwiftUI
 import MapKit
 
 struct MapView: View {
+    @Bindable private var manager = LocationManager.shared
+    @State private var position: MapCameraPosition = .userLocation(fallback: .automatic)
+    @State private var searchResults = [MKMapItem]()
     @Binding var markers: [MarkerInfo]
     @State var selectedMarker: UUID?
+    @State private var search = ""
     
     var body: some View {
         NavigationStack {
-            Map(selection: $selectedMarker) {
+            Map(position: $position, selection: $selectedMarker) {
                 ForEach(markers) { marker in
                     switch marker.typeOfMarker {
                         case .person:
@@ -25,7 +29,20 @@ struct MapView: View {
                             Marker("Meta", systemImage: "mountain.2.fill", coordinate: marker.location)
                                 .tag(marker.id)
                     }
+                    
+                    Annotation("Friend", coordinate: marker.location, anchor: .bottom) {
+                        // Image of person with dot matching type
+                        // No image == dot matching type
+                    }
                 }
+                
+                UserAnnotation()
+            }
+            .mapStyle(.standard(elevation: .realistic))
+            .mapControls {
+                MapUserLocationButton()
+                MapCompass()
+                MapScaleView()
             }
             .onChange(of: selectedMarker) { oldValue, newValue in
                 markers.forEach { markerInfo in
@@ -34,7 +51,14 @@ struct MapView: View {
                     }
                 }
             }
+            .onChange(of: searchResults) { oldValue, newValue in
+                position = .automatic
+            }
             .navigationTitle("Map")
+            .searchable(text: $search)
+            .onAppear {
+                LocationManager.shared.requestLocation()
+            }
         }
     }
     

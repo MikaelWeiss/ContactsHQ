@@ -17,7 +17,7 @@ final class ContactsManager {
     
     func retreaveContactsList() throws -> [Person] {
         var people = [Person]()
-        let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey, CNContactEmailAddressesKey, CNContactSocialProfilesKey, CNContactPostalAddressesKey, CNContactUrlAddressesKey , CNContactRelationsKey, CNContactBirthdayKey, CNContactDatesKey] as [CNKeyDescriptor] //TODO: Add birthday and dates to Person
+        let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey, CNContactEmailAddressesKey, CNContactSocialProfilesKey, CNContactPostalAddressesKey, CNContactUrlAddressesKey , CNContactRelationsKey, CNContactBirthdayKey, CNContactDatesKey, CNContactImageDataKey] as [CNKeyDescriptor] //TODO: Add birthday and dates to Person
         let request = CNContactFetchRequest(keysToFetch: keys)
         do {
             try CNStore.enumerateContacts(with: request) { contact, _ in
@@ -30,6 +30,7 @@ final class ContactsManager {
                            postalAddresses: contact.postalAddresses.map { Person.LabeledContactValue(label: string(for: $0.label), value: "\($0.value)") },
                            urlAddresses: contact.urlAddresses.map { Person.LabeledContactValue(label: string(for: $0.label), value: "\($0.value)") },
                            contactRelations: contact.contactRelations.map { Person.LabeledContactValue(label: string(for: $0.label), value: "\($0.value)") },
+                           imageData: contact.imageData,
                            type: .acquaintance,
 //                           events: [],
                            groups: []))
